@@ -1,0 +1,61 @@
+grammar STEP extends de.monticore.literals.MCCommonLiterals,
+    de.monticore.MCBasics {
+
+  StepExchangeFile =
+    "ISO-10303-21;" Header Data* "END-ISO-10303-21;";
+
+  Id =
+    pre:["#"|"@"] Digits | pre:["#"|"@"] Name | pre:["!"]? Name;
+
+  ANCHOR_NAME       = "<" Id ">" ;
+  ENUMERATION       = "." Name "." ;
+  URI_FRAGMENT_IDENTIFIER = ("-"|Name)*;
+  UNIVERSAL_RESOURCE_IDENTIFIER = "<" (":"|"/"|Id|StringLiteral)">";
+
+  Header =
+    "HEADER;" (NamedList";")* "ENDSEC;";
+
+  Parameter =
+    "$" | SignedNumericLiteral | OtherString | Id | ENUMERATION | List | NamedList+ | "*";
+
+  List =
+    "(" (Parameter | ",")* ")";
+
+  /*
+  Anchors = "ANCHOR;" Anchor* "ENDSEC;";
+  Anchor = ANCHOR_NAME "=" AnchorItem AnchorTag* ";";
+  AnchorItem = "$" | IntLiteral | DoubleLiteral | OtherString| ENUMERATION | Id | RESOURCE | AnchorItemList;
+  AnchorItemList = "(" (AnchorItem ("," AnchorItem)* )? ")";
+  AnchorTag = "{" Name ":" AnchorItem "}";
+
+  References  = "REFERENCE;" Reference* "ENDSEC;";
+  Reference = Id "=" RESOURCE ";";
+  */
+
+  Data =
+    "DATA;" Instance* "ENDSEC;";
+
+  Instance =
+    Id "=" (NamedList|List) ";";
+
+  NamedList =
+    name:Id List;
+
+  Signature  =
+    "SIGNATURE" (OtherString|NatLiteral)+ "ENDSEC;";
+
+  SignedBasicDoubleLiteralWithExp implements SignedNumericLiteral<1> =
+    negative:["-"] DecimalDoublePointLiteral {noSpace()}? | 
+                   DecimalDoublePointLiteral;
+  
+  token DecimalDoublePointLiteral = Digits '.' (Digits)? (ExponentPart)? |
+                                    Digits ExponentPart;
+
+  token ExponentPart = ('e' | 'E') ('+' | '-')? Digits;
+  
+  token OtherString
+      = '\'' (SingleCharacter)* '\''
+      : {setText(getText().substring(1, getText().length() - 1));};
+  
+  
+}

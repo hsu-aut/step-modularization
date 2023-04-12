@@ -1,0 +1,27 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION (( 'STEP AP203' ),
+    '1' );
+FILE_NAME ('Production Gripper.STEP',
+    '2020-08-27T12:25:41',
+    ( '' ),
+    ( '' ),
+    'SwSTEP 2.0',
+    'SolidWorks 2019',
+    '' );
+FILE_SCHEMA (( 'CONFIG_CONTROL_DESIGN' ));
+ENDSEC;
+
+DATA;
+#1 = LINE ( 'NONE', #7390, #3173 ) ;
+#2 = ORIENTED_EDGE ( 'NONE', *, *, #4052, .F. ) ;
+#3 = LINE ( 'NONE', #2763, #9613 ) ;
+#4 = VECTOR ( 'NONE', #1959, 1000.000000000000000 ) ;
+#5 = CARTESIAN_POINT ( 'NONE',  (-99.350, 25.21731875719217086, 23.00000000000000000 ) ) ;
+#6 = DATE_AND_TIME ( #9704, #1486 ) ;
+#7 = EDGE_LOOP ( 'NONE', ( #6353, #7000, #8622, #7211 ) ) ;
+#8 = DATE_TIME_ROLE ( 'classification_date' ) ;
+#9 = APPLICATION_CONTEXT ( 'configuration controlled 3d designs of mechanical parts and assemblies' ) ;
+
+ENDSEC;
+END-ISO-10303-21;

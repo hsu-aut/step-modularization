@@ -1,0 +1,20 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vdi2206: <http://www.hsu-ifa.de/ontologies/VDI2206#>
+PREFIX temp: <http://www.hsu-ifa.de/ontologies/VDI2206-temp#>
+
+INSERT {
+    ?comp1 temp:hasCommonInterfaceWith ?comp2 .
+}
+WHERE {
+    ?comp1 a vdi2206:Component .
+    ?comp1 vdi2206:hasMechanicalInterface ?interface .
+    ?comp2 a vdi2206:Component .
+    ?comp2 vdi2206:hasMechanicalInterface ?interface .
+    ?interface a vdi2206:MechanicalInterface .
+    FILTER (?comp1 != ?comp2)
+    ?interface vdi2206:hasDOF ?DOF
+    { ?DOF a vdi2206:RotationalDOF . } UNION {?DOF a vdi2206:TranslationalDOF . }
+}

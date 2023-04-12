@@ -1,0 +1,24 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vdi2206: <http://www.hsu-ifa.de/ontologies/VDI2206#>
+PREFIX temp: <http://www.hsu-ifa.de/ontologies/VDI2206-temp#>
+
+SELECT ?static_component (COUNT(DISTINCT ?module) AS ?m_count) (IRI(MIN(?module)) as ?module_iri)
+WHERE {
+    temp:static_list temp:has_component ?static_component .
+    ?static_component a vdi2206:Component . 
+    ?static_component vdi2206:hasMechanicalInterface ?interface .
+    
+    ?interface a vdi2206:MechanicalInterface .
+
+    ?component_of_module vdi2206:hasMechanicalInterface ?interface .
+    ?component_of_module a vdi2206:Component . 
+    ?module vdi2206:consistsOf ?component_of_module .
+    ?module a vdi2206:Module .
+    
+    FILTER ( ?component_of_module != ?static_component )
+}
+GROUP BY ?static_component
+HAVING (?m_count = 1)

@@ -1,0 +1,516 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:VDI2206="http://www.hsu-ifa.de/ontologies/VDI2206/"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:extension="http://www.hsu-ifa.de/ontologies/VDI2206/extension#"
+    xmlns="http://www.hsu-ifa.de/ontologies/VDI2206#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:obda="https://w3id.org/obda/vocabulary#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206">
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#InformationProcessing">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Product">
+    <rdfs:comment>Examples of materials which flow between units of mechatronic systems are solid bodies, objects under test, objects being treated, gases or liquids.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Information">
+    <rdfs:comment>Information exchanged between units of mechatronic systems are for example measured variables, control pulses or data</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Energy">
+    <rdfs:comment>Energy is to be understood in this connection as meaning any form of energy, such as for example mechanical, thermal or electrical energy, but also variables such as force or current.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#DOF"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#MechanicalInterface">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#System">
+    <rdfs:label>Mechatronic System</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Interface">
+    <owl:disjointWith>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Energy"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Information"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Product"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module">
+    <rdfs:label>Module</rdfs:label>
+    <rdfs:comment>Complex mechatronic systems generally comprise the synergetic integration of various mechatronic modules, i.e. system elements or components which are combined to form a group and together perform a specific function.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem">
+    <rdfs:label>Basic System</rdfs:label>
+    <rdfs:comment>The basic system is generally a mechanical, electromechanical, hydraulic or pneumatic structure or a combination of these.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Actuator">
+    <rdfs:comment>The information processing determines the effects necessary to influence the state variables of the basic system in the desired way. The implementation of the effects takes place by actors directly on the basic system.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#TranslationalDOF">
+    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#DOF"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#InformationInterface">
+    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#EnergyInterface">
+    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Sensor">
+    <rdfs:comment>The task of the sensors is to determine selected state variables of the basic system.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#ComponentIsPartOfSystem">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#SystemConsistsOfComponent"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#isPartOf"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasDOF">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#DOF"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#MechanicalInterface"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasInformationInterface">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#InformationInterface"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:subPropertyOf>
+      <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasInterface">
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+        <rdfs:domain>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:domain>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+      </owl:IrreflexiveProperty>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#SystemConsistsOfComponent">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#consistsOf"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasEnergyInterface">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#EnergyInterface"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#hasInterface"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasMechanicalInterface">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#MechanicalInterface"/>
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#hasInterface"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#directionalVectorZ">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#TranslationalDOF"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#locationVectorZ">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#locationVectorY">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#locationVectorX">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#directionalVectorX">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#TranslationalDOF"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#directionalVectorY">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#TranslationalDOF"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#RotationalDOF"/>
+  </owl:DatatypeProperty>
+  <owl:TransitiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#isPartOf">
+    <rdfs:comment>an part of relation for hierarchical structures</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#consistsOf">
+    <rdfs:comment>an containment relation for hierarchical structures</rdfs:comment>
+    <owl:inverseOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#isPartOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+      <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+  <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasOutput">
+    <rdfs:comment>represents the relationships between the components by means of flows. In principle, a distinction has been made between three types of flow: material flow, energy flow and information flow</rdfs:comment>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Energy"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Information"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Product"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <owl:inverseOf>
+      <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#isOutputOf">
+        <rdfs:comment>represents the relationships between the components by means of flows. In principle, a distinction has been made between three types of flow: material flow, energy flow and information flow</rdfs:comment>
+        <rdfs:range>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Energy"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Information"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Product"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:range>
+        <rdfs:domain>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:domain>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+      </owl:IrreflexiveProperty>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:IrreflexiveProperty>
+  <owl:AsymmetricProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#ComponentIsPartOfModule">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#ModuleConsistsOfComponent">
+        <rdfs:range>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:range>
+        <rdfs:range>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:range>
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        <rdfs:domain>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:domain>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#consistsOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+      </owl:IrreflexiveProperty>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#isPartOf"/>
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+  </owl:AsymmetricProperty>
+  <rdf:Description rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206/ComponentA">
+    <hasMechanicalInterface>
+      <MechanicalInterface rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206/InterfaceAB">
+        <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Interface"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+      </MechanicalInterface>
+    </hasMechanicalInterface>
+    <hasInterface rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206/InterfaceAB"/>
+    <rdf:type>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdf:type>
+    <rdf:type>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdf:type>
+    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+  <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#ModuleIsPartOfSystem">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <owl:inverseOf>
+      <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#SystemConsistsOfModule">
+        <rdfs:range>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:range>
+        <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#consistsOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+      </owl:IrreflexiveProperty>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#isPartOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:IrreflexiveProperty>
+  <rdf:Description rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206/ComponentB">
+    <hasMechanicalInterface rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206/InterfaceAB"/>
+    <hasInterface rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206/InterfaceAB"/>
+    <rdf:type>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Module"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdf:type>
+    <rdf:type>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdf:type>
+    <rdf:type rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+  <Component rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#406">
+    <hasMechanicalInterface>
+      <MechanicalInterface rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#MechanicalInterface406-407">
+        <hasDOF>
+          <RotationalDOF rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#DOF-1-406-407">
+            <locationVectorZ rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+            >0.0</locationVectorZ>
+            <locationVectorY rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+            >0.0</locationVectorY>
+            <locationVectorX rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+            >0.0</locationVectorX>
+            <directionalVectorZ rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+            >0.0</directionalVectorZ>
+            <directionalVectorY rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+            >1.0</directionalVectorY>
+            <directionalVectorX rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+            >0.0</directionalVectorX>
+          </RotationalDOF>
+        </hasDOF>
+      </MechanicalInterface>
+    </hasMechanicalInterface>
+  </Component>
+  <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#SystemConsistsOfSystem">
+    <rdfs:range rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+    <rdfs:domain rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#System"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#consistsOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:IrreflexiveProperty>
+  <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasChild">
+    <rdfs:comment>an inheritance structure to model both, types of systems and their (real world) instances, i.e. children</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <owl:inverseOf>
+      <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasParent">
+        <rdfs:comment>an inheritance structure to model both, types of systems and their (real world) instances, i.e. children</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+      </owl:IrreflexiveProperty>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:IrreflexiveProperty>
+  <Component rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#407">
+    <hasMechanicalInterface rdf:resource="http://www.hsu-ifa.de/ontologies/VDI2206#MechanicalInterface406-407"/>
+  </Component>
+  <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#hasInput">
+    <rdfs:comment>represents the relationships between the components by means of flows. In principle, a distinction has been made between three types of flow: material flow, energy flow and information flow</rdfs:comment>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Energy"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Information"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Product"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+          <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    <owl:inverseOf>
+      <owl:IrreflexiveProperty rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#isInputFor">
+        <rdfs:comment>represents the relationships between the components by means of flows. In principle, a distinction has been made between three types of flow: material flow, energy flow and information flow</rdfs:comment>
+        <rdfs:range>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#BasicSystem"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Component"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:range>
+        <rdfs:domain>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Energy"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Information"/>
+              <owl:Class rdf:about="http://www.hsu-ifa.de/ontologies/VDI2206#Product"/>
+            </owl:unionOf>
+          </owl:Class>
+        </rdfs:domain>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+      </owl:IrreflexiveProperty>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:IrreflexiveProperty>
+</rdf:RDF>

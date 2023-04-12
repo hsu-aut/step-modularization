@@ -1,0 +1,28 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vdi2206: <http://www.hsu-ifa.de/ontologies/VDI2206#>
+PREFIX temp: <http://www.hsu-ifa.de/ontologies/VDI2206-temp#>
+
+INSERT DATA {
+
+    temp:static_comp1 a vdi2206:Component .
+    temp:static_mi1 a vdi2206:MechanicalInterface .
+    temp:static_comp1 vdi2206:hasMechanicalInterface temp:static_mi1 .
+    vdi2206:01_BasePlate vdi2206:hasMechanicalInterface temp:static_mi1 .
+
+    temp:static_comp2 a vdi2206:Component .
+    temp:static_mi2 a vdi2206:MechanicalInterface .
+    temp:static_comp2 vdi2206:hasMechanicalInterface temp:static_mi2 .
+    vdi2206:03_RoundWheel vdi2206:hasMechanicalInterface temp:static_mi2 .
+
+    temp:nextcomp a vdi2206:Component .
+    temp:nextmod a vdi2206:Module .
+    temp:nextmod vdi2206:consistsOf temp:nextcomp .
+
+    temp:static_mi3 a vdi2206:MechanicalInterface .
+    temp:nextcomp vdi2206:hasMechanicalInterface temp:static_mi3 .
+    temp:static_comp2 vdi2206:hasMechanicalInterface temp:static_mi3 .
+
+}

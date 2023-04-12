@@ -1,0 +1,250 @@
+<!-- (c) https://github.com/MontiCore/monticore -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- == PROJECT COORDINATES ============================================= -->
+
+  
+    <groupId>de.ac.md.step</groupId>
+    <artifactId>step-language</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+  <properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.build.timestamp.format>yyyy.MM.dd HH:mm</maven.build.timestamp.format>
+
+		<java.version>11</java.version>
+
+		<models.dir>${basedir}/src/main/resources/</models.dir>
+		<hwc.dir>${basedir}/src/main/java/</hwc.dir>
+		<gen.dir>${basedir}/target/generated-sources/</gen.dir>
+
+		<se-groovy.maven.version>1.2.3</se-groovy.maven.version>
+		<groovy.version>2.3.7</groovy.version>
+
+		<montiarc.version>5.1.2-SNAPSHOT</montiarc.version>
+		<montiarc.tagged.version>0.0.1-SNAPSHOT</montiarc.tagged.version>
+		<monticore.generator.version>5.3.0</monticore.generator.version>
+		<cd4a.version>1.4.0</cd4a.version>
+		<od.version>0.2.1-SNAPSHOT</od.version>
+
+
+		<grammar.classifier>grammars</grammar.classifier>
+		<model.classifier>models</model.classifier>
+
+		<!-- Common Dependency Versions -->
+		<guava.version>21.0</guava.version>
+		<se-commons.version>1.7.9</se-commons.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<javaee.version>7.0-1</javaee.version>
+		<jline.version>2.12</jline.version>
+		<ch.qos.logback.version>1.0.9</ch.qos.logback.version>
+		<commons-lang.version>2.4</commons-lang.version>
+		<jama.version>1.0.3</jama.version>
+
+		<!-- Common Constants -->
+		<skip.scripts>false</skip.scripts>
+		<skip.tests>true</skip.tests>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<sonar.sources>src</sonar.sources>
+		<sonar.test>test</sonar.test>
+
+    <!-- .. Libraries ..................................................... -->
+
+    <monticore.version>6.1.0</monticore.version>
+    <antlr.version>4.7.1</antlr.version>
+    <slf4j.version>1.7.30</slf4j.version>
+
+    <!-- Classifiers -->
+
+    <grammars.classifier>grammars</grammars.classifier>
+
+    <!-- .. Misc .......................................................... -->
+
+    <wagon.provider.version>2.6</wagon.provider.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+
+  <!-- == DEFAULT BUILD SETTINGS =========================================== -->
+
+  <dependencies>
+    <dependency>
+      <groupId>de.monticore</groupId>
+      <artifactId>monticore-runtime</artifactId>
+      <version>${monticore.generator.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>de.monticore</groupId>
+      <artifactId>monticore-grammar</artifactId>
+      <version>${monticore.generator.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>de.monticore</groupId>
+      <artifactId>monticore-grammar</artifactId>
+      <version>${monticore.generator.version}</version>
+      <classifier>${grammar.classifier}</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13</version>
+    </dependency>
+
+    <dependency>
+      <groupId>de.se_rwth.commons</groupId>
+      <artifactId>se-commons-groovy</artifactId>
+      <version>${se-commons.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jgrapht</groupId>
+      <artifactId>jgrapht-core</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jgrapht</groupId>
+      <artifactId>jgrapht-io</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.github.livingdocumentation/dot-diagram -->
+    <dependency>
+      <groupId>io.github.livingdocumentation</groupId>
+      <artifactId>dot-diagram</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>gov.nist.math</groupId>
+      <artifactId>jama</artifactId>
+      <version>${jama.version}</version>
+    </dependency>
+
+  <dependency>
+    <groupId>org.apache.jena</groupId>
+    <artifactId>apache-jena-libs</artifactId>
+    <type>pom</type>
+    <version>4.3.2</version>
+  </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- add target/generated-sources/monticore/sourcecode/ as source -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>add-source</id>
+                <phase>generate-sources</phase>
+                <goals>
+                    <goal>add-source</goal>
+                </goals>
+                <configuration>
+                    <sources>
+                        <source>target/generated-sources/monticore/sourcecode/</source>
+                    </sources>
+                </configuration>
+            </execution>
+        </executions>
+     </plugin>
+      <!-- MontiCore Generation -->
+      <plugin>
+        <groupId>de.monticore.mojo</groupId>
+        <artifactId>monticore-maven-plugin</artifactId>
+        <version>${monticore.generator.version}</version>
+        <configuration>
+          <skip>false</skip>
+          <script>de/monticore/monticore_noemf.groovy</script>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <dependencies>
+          <dependency>
+            <groupId>de.monticore</groupId>
+            <artifactId>mc-assemblies</artifactId>
+            <version>0.0.11</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>grammars</id>
+            <configuration>
+              <finalName>${project.artifactId}-${project.version}</finalName>
+              <descriptorRefs>
+                <descriptorRef>grammars-assembly</descriptorRef>
+              </descriptorRefs>
+              <formats>
+                <format>jar</format>
+              </formats>
+            </configuration>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+      </plugin>
+    </plugins>
+
+  </build>
+  
+  <repositories>
+    <repository>
+      <id>se-nexus</id>
+      <url>https://nexus.se.rwth-aachen.de/content/groups/public/</url>
+    </repository>
+  </repositories>
+  
+  <pluginRepositories>
+    <pluginRepository>
+      <id>se-nexus</id>
+      <url>https://nexus.se.rwth-aachen.de/content/groups/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+
+</project>

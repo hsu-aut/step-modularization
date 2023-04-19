@@ -8,7 +8,7 @@ Find the STEP MontiCore Grammar at src/main/grammars
 - Use the provided settings.xml (put into .m2 folder)
 
 - Open Git Bash in your preferred directory 
-- Git Clone `git clone https://github.com/ManuelaDalibor/step.git`
-- Change into Directory step `cd step`
+- Git Clone `git clone https://github.com/hsu-aut/step-modularization.git`
+- Change into Directory step `cd step-modularization`
 - Run Maven `mvn clean install`
 

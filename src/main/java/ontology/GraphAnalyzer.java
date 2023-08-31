@@ -33,7 +33,9 @@ public class GraphAnalyzer {
 			"u_clean_static_list",
 			"u_undefined_list",
 			"s_modules_and_comps",
-			"s_undefined_list"
+			"s_undefined_list",
+			"u_add_system",
+			"u_add_modules_to_system"
 		};
 		// execute all queries
 		for (String queryFileName: queryFileNames) {
